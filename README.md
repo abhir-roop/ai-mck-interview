@@ -44,13 +44,13 @@ Please download the assets used in this projects from here : [Download](https://
 #### Clone this repository:
 
 ```
-git clone https://github.com/Vetrivel-VP/react-typescript-ai-mock-interview-november-2024.git
+git clone https://github.com/abhir-roop/ai-mck-interview.git
 ```
 
 #### Navigate to the project directory:
 
 ```
-cd react-ai-mock-interview
+cd ai-mck-interview
 ```
 
 #### Install dependencies
@@ -108,11 +108,3 @@ VITE_FIREBASE_APP_ID=YOUR_API_KEY_REF
 - Interactive Questionnaires
   Engage with diverse question types, including multiple-choice, scenario-based, and technical coding challenges.
 
-# Author
-
-## Vetrivel Ravi
-
-- Founder of Mahalakshmi Design Studioz
-- Full-Stack Web Developer with 7+ years of experience
-- YouTube Channel: [Vetrivel Ravi](https://www.youtube.com/@vetrivelravi)
-- Email: [vetrivelravi@example.com](vetrivelravi@example.com)
