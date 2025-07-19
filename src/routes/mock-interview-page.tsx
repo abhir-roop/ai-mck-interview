@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import { toast } from "sonner";
@@ -17,7 +17,8 @@ export const MockInterviewPage = () => {
   const { interviewId } = useParams<{ interviewId: string }>();
   const [interview, setInterview] = useState<Interview | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-
+  const [isFullScreen, setIsFullScreen] = useState(false);
+  const pageRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
   if (!interviewId) {
@@ -49,12 +50,42 @@ export const MockInterviewPage = () => {
     }
   }, [interviewId, navigate]);
 
+  // Fullscreen logic
+  const handleFullScreen = () => {
+    if (!isFullScreen && pageRef.current) {
+      if (pageRef.current.requestFullscreen) {
+        pageRef.current.requestFullscreen();
+      }
+      setIsFullScreen(true);
+    } else if (document.fullscreenElement) {
+      document.exitFullscreen();
+      setIsFullScreen(false);
+    }
+  };
+
+  useEffect(() => {
+    const onFullScreenChange = () => {
+      setIsFullScreen(!!document.fullscreenElement);
+    };
+    document.addEventListener("fullscreenchange", onFullScreenChange);
+    return () => document.removeEventListener("fullscreenchange", onFullScreenChange);
+  }, []);
+
   if (isLoading) {
     return <LoaderPage className="w-full h-[70vh]" />;
   }
 
   return (
-    <div className="flex flex-col w-full gap-8 py-5">
+    <div ref={pageRef} className={`flex flex-col w-full gap-8 py-5 ${isFullScreen ? 'bg-white' : ''}`}>
+      <div className="flex justify-end mb-2">
+        <button
+          onClick={handleFullScreen}
+          className="px-4 py-2 rounded bg-emerald-600 text-white font-semibold shadow hover:bg-emerald-700 transition"
+        >
+          {isFullScreen ? 'Exit Full Screen' : 'Full Screen'}
+        </button>
+      </div>
+
       <CustomBreadCrumb
         breadCrumbPage="Start"
         breadCrumpItems={[

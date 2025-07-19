@@ -1,6 +1,5 @@
 import { Sparkles } from "lucide-react";
 import Marquee from "react-fast-marquee";
-
 import { Container } from "@/components/container";
 import { Button } from "@/components/ui/button";
 import { MarqueImg } from "@/components/marquee-img";
@@ -8,71 +7,38 @@ import { Link } from "react-router-dom";
 
 export const HomePage = () => {
   return (
-    <div className="flex-col w-full pb-24">
+    <div className="flex-col w-full pb-24 bg-gradient-to-br from-emerald-50 via-blue-50 to-white min-h-screen">
       <Container>
-        <div className="my-8">
-          <h2 className="text-3xl text-center md:text-left md:text-6xl">
-            <span className=" text-outline font-extrabold md:text-8xl">
-              AI Superpower
-            </span>
-            <span className="text-gray-500 font-extrabold">
-              - A better way to
-            </span>
-            <br />
-            improve your interview chances and skills
-          </h2>
-
-          <p className="mt-4 text-muted-foreground text-sm">
-            Boost your interview skills and increase your success rate with
-            AI-driven insights. Discover a smarter way to prepare, practice, and
-            stand out.
-          </p>
-        </div>
-
-        <div className="flex w-full items-center justify-evenly md:px-12 md:py-16 md:items-center md:justify-end gap-12">
-          <p className="text-3xl font-semibold text-gray-900 text-center">
-            250k+
-            <span className="block text-xl text-muted-foreground font-normal">
-              Offers Recieved
-            </span>
-          </p>
-          <p className="text-3xl font-semibold text-gray-900 text-center">
-            1.2M+
-            <span className="block text-xl text-muted-foreground font-normal">
-              Interview Aced
-            </span>
-          </p>
-        </div>
-
-        {/* image sectiomn */}
-
-        <div className="w-full mt-4 rounded-xl bg-gray-100 h-[420px] drop-shadow-md overflow-hidden relative">
-          <img
-            src="/img/hero.jpg"
-            alt=""
-            className="w-full h-full object-cover"
-          />
-
-          <div className="absolute top-4 left-4 px-4 py-2 rounded-md bg-white/40 backdrop-blur-md">
-            Inteviews Copilot&copy;
-          </div>
-
-          <div className="hidden md:block absolute w-80 bottom-4 right-4 px-4 py-2 rounded-md bg-white/60 backdrop-blur-md">
-            <h2 className="text-neutral-800 font-semibold">Developer</h2>
-            <p className="text-sm text-neutral-500">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam
-              distinctio natus, quos voluptatibus magni sapiente.
+        <section className="flex flex-col md:flex-row items-center justify-between gap-10 py-16">
+          <div className="flex-1 flex flex-col gap-6 items-start">
+            <h1 className="text-5xl md:text-7xl font-extrabold text-emerald-700 leading-tight">
+              Ace Your Next Interview
+              <span className="block text-blue-600 font-bold text-3xl md:text-5xl mt-2">
+                with AI-Powered Practice
+              </span>
+            </h1>
+            <p className="text-lg md:text-xl text-gray-700 max-w-xl">
+              Get personalized questions, instant feedback, and actionable
+              insights. Practice smarter, not harder.
             </p>
-
-            <Button className="mt-3">
-              Generate <Sparkles />
-            </Button>
+            <Link to="/generate">
+              <Button className="mt-4 px-8 py-4 text-lg rounded-xl shadow-lg bg-gradient-to-r from-emerald-500 to-blue-500 hover:from-emerald-600 hover:to-blue-600">
+                Start Practicing{" "}
+                <Sparkles className="ml-2" />
+              </Button>
+            </Link>
           </div>
-        </div>
+          <div className="flex-1 flex justify-center">
+            <img
+              src="/img/hero.jpg"
+              alt="AI Interview"
+              className="rounded-3xl shadow-2xl w-full max-w-lg object-cover"
+            />
+          </div>
+        </section>
       </Container>
 
       {/* marquee section */}
-
       <div className="w-full my-12">
         <Marquee pauseOnHover>
           <MarqueImg img="/img/logo/firebase.png" />
@@ -87,29 +53,26 @@ export const HomePage = () => {
       </div>
 
       <Container className="py-8 space-y-8">
-        <h2 className="tracking-wide text-xl text-gray-800 font-semibold">
+        <h2 className="tracking-wide text-2xl md:text-3xl text-emerald-800 font-bold text-center">
           Unleash your potential with personalized AI insights and targeted
           interview practice.
         </h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-6 items-center">
           <div className="col-span-1 md:col-span-3">
             <img
               src="/img/office.jpg"
-              alt=""
-              className="w-full max-h-96 rounded-md object-cover"
+              alt="Office"
+              className="w-full max-h-96 rounded-2xl object-cover shadow-lg"
             />
           </div>
-
-          <div className="col-span-1 md:col-span-2 gap-8 max-h-96 min-h-96 w-full flex flex-col items-center justify-center text-center">
-            <p className="text-center text-muted-foreground">
+          <div className="col-span-1 md:col-span-2 flex flex-col items-center justify-center text-center gap-6">
+            <p className="text-lg text-gray-600">
               Transform the way you prepare, gain confidence, and boost your
-              chances of landing your dream job. Let AI be your edge in
-              today&apos;s competitive job market.
+              chances of landing your dream job. Let AI be your edge in today's
+              competitive job market.
             </p>
-
             <Link to={"/generate"} className="w-full">
-              <Button className="w-3/4">
+              <Button className="w-3/4 bg-gradient-to-r from-emerald-500 to-blue-500 hover:from-emerald-600 hover:to-blue-600 text-lg rounded-xl shadow-lg">
                 Generate <Sparkles className="ml-2" />
               </Button>
             </Link>

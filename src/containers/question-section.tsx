@@ -9,13 +9,17 @@ import { RecordAnswer } from "./record-answer";
 
 interface QuestionSectionProps {
   questions: { question: string; answer: string }[];
+  setAllSubmitted?: (val: boolean) => void;
 }
 
-export const QuestionSection = ({ questions }: QuestionSectionProps) => {
+export const QuestionSection = ({ questions, setAllSubmitted }: QuestionSectionProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isWebCam, setIsWebCam] = useState(false);
   const [currentSpeech, setCurrentSpeech] =
     useState<SpeechSynthesisUtterance | null>(null);
+  const [submittedQuestions, setSubmittedQuestions] = useState<boolean[]>(
+    Array(questions.length).fill(false)
+  );
 
   const handlePlayQuestion = (qst: string) => {
     if (isPlaying && currentSpeech) {
@@ -37,6 +41,16 @@ export const QuestionSection = ({ questions }: QuestionSectionProps) => {
           setCurrentSpeech(null);
         };
       }
+    }
+  };
+
+  // Helper to mark a question as submitted
+  const handleQuestionSubmit = (index: number) => {
+    const updated = [...submittedQuestions];
+    updated[index] = true;
+    setSubmittedQuestions(updated);
+    if (setAllSubmitted) {
+      setAllSubmitted(updated.every(Boolean));
     }
   };
 
@@ -66,7 +80,6 @@ export const QuestionSection = ({ questions }: QuestionSectionProps) => {
             <p className="text-base text-left tracking-wide text-neutral-500">
               {tab.question}
             </p>
-
             <div className="w-full flex items-center justify-end">
               <TooltipButton
                 content={isPlaying ? "Stop" : "Start"}
@@ -80,11 +93,11 @@ export const QuestionSection = ({ questions }: QuestionSectionProps) => {
                 onClick={() => handlePlayQuestion(tab.question)}
               />
             </div>
-
             <RecordAnswer
               question={tab}
               isWebCam={isWebCam}
               setIsWebCam={setIsWebCam}
+              onSubmit={() => handleQuestionSubmit(i)}
             />
           </TabsContent>
         ))}

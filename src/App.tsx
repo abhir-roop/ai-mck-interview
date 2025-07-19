@@ -9,6 +9,9 @@ import { CreateEditPage } from "./routes/create-edit-page";
 import { MockLoadPage } from "./routes/mock-load-page";
 import { MockInterviewPage } from "./routes/mock-interview-page";
 import { Feedback } from "./routes/feedback";
+import AboutUs from "./routes/about-us";
+import ContactUs from "./routes/contact-us";
+import Services from "./routes/services";
 
 export const App = () => {
   return (
@@ -21,6 +24,9 @@ export const App = () => {
 
         <Route element={<PublicLayout />}>
           <Route path="/" element={<HomePage />} />
+          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/contact-us" element={<ContactUs />} />
+          <Route path="/services" element={<Services />} />
         </Route>
 
         {/* protected routes */}
