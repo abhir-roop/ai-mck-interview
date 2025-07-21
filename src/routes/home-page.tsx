@@ -38,19 +38,7 @@ export const HomePage = () => {
         </section>
       </Container>
 
-      {/* marquee section */}
-      <div className="w-full my-12">
-        <Marquee pauseOnHover>
-          <MarqueImg img="/img/logo/firebase.png" />
-          <MarqueImg img="/img/logo/meet.png" />
-          <MarqueImg img="/img/logo/zoom.png" />
-          <MarqueImg img="/img/logo/firebase.png" />
-          <MarqueImg img="/img/logo/microsoft.png" />
-          <MarqueImg img="/img/logo/meet.png" />
-          <MarqueImg img="/img/logo/tailwindcss.png" />
-          <MarqueImg img="/img/logo/microsoft.png" />
-        </Marquee>
-      </div>
+      
 
       <Container className="py-8 space-y-8">
         <h2 className="tracking-wide text-2xl md:text-3xl text-emerald-800 font-bold text-center">
