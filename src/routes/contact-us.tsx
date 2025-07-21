@@ -1,17 +1,29 @@
 import React, { useState } from "react";
+import emailjs from "emailjs-com";
 
 const ContactUs = () => {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [form, setForm] = useState({ message: "" });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    // Here you could add logic to send the form data to your backend or email service
+    try {
+      await emailjs.send(
+        "service_ks3f6f4", // replace with your EmailJS service ID
+        "template_t00cqa9", // replace with your EmailJS template ID
+        {
+          message: form.message,
+        },
+        "M5GeYP7xjciR3DvhN" // replace with your EmailJS public key
+      );
+      setSubmitted(true);
+    } catch (error) {
+      alert("Failed to send message. Please try again later.");
+    }
   };
 
   return (
@@ -21,28 +33,6 @@ const ContactUs = () => {
         <div className="text-green-600 font-semibold">Thank you for contacting us! We will get back to you soon.</div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block mb-1 font-medium">Name</label>
-            <input
-              type="text"
-              name="name"
-              value={form.name}
-              onChange={handleChange}
-              className="w-full border rounded px-3 py-2"
-              required
-            />
-          </div>
-          <div>
-            <label className="block mb-1 font-medium">Email</label>
-            <input
-              type="email"
-              name="email"
-              value={form.email}
-              onChange={handleChange}
-              className="w-full border rounded px-3 py-2"
-              required
-            />
-          </div>
           <div>
             <label className="block mb-1 font-medium">Message</label>
             <textarea
